@@ -11,4 +11,6 @@
 {% for cook in dish.cooks.all %}
   <p>{{ cook.username }}</p>
 {% endfor %}
+<a class="btn btn-primary" href="{% url 'kitchen:dish-update' dish.id %}">Update</a>
+<a class="btn btn-danger" href="{% url 'kitchen:dish-delete' dish.id %}">Delete</a>
 {% endblock %}

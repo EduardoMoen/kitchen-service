@@ -3,10 +3,10 @@
 {% block title %}Dish{% endblock %}
 
 {% block content %}
-<h1>Dish List</h1>
+<h1>Dish List <a class="btn btn-success" href="{% url 'kitchen:dish-create' %}">Create</a></h1>
 <ul>
   {% for dish in dish_list %}
-    <li>{{ dish.name }} - ${{ dish.price }}</li>
+    <li>{{ dish.name }} - ${{ dish.price }} <a class="btn btn-primary" href="{% url 'kitchen:dish-detail' dish.id %}">Detail</a></li>
   {% endfor %}
 </ul>
 {% endblock %}
