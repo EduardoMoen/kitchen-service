@@ -22,6 +22,10 @@ class DishTypeListView(generic.ListView):
     model = DishType
 
 
+class DishTypeDetailView(generic.DetailView):
+    model = DishType
+
+
 class DishTypeCreateView(generic.CreateView):
     model = DishType
     fields = "__all__"
