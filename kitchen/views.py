@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import generic
 from .models import Cook, Dish, DishType
 
 def index(request):
@@ -14,3 +16,24 @@ def index(request):
     }
 
     return render(request, "kitchen/index.html", context)
+
+
+class DishTypeListView(generic.ListView):
+    model = DishType
+
+
+class DishTypeCreateView(generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class DishTypeUpdateView(generic.UpdateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class DishTypeDeleteView(generic.DeleteView):
+    model = DishType
+    success_url = reverse_lazy("kitchen:dish-type-list")
