@@ -24,6 +24,7 @@ class DishTypeListView(generic.ListView):
 
 class DishTypeDetailView(generic.DetailView):
     model = DishType
+    queryset = DishType.objects.prefetch_related("dishes")
 
 
 class DishTypeCreateView(generic.CreateView):
