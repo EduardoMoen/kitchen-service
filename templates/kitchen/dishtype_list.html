@@ -6,7 +6,7 @@
   <h1>Dish Types List View</h1>
   <ul>
     {% for dish_type in dishtype_list %}
-      <li>{{ dish_type.id }} {{ dish_type.name }}</li>
+      <li>{{ dish_type.id }} {{ dish_type.name }} <a class="btn btn-primary" href="{% url 'kitchen:dish-type-detail' dish_type.id %}">Detail</a></li>
     {% endfor %}
   </ul>
 {% endblock %}

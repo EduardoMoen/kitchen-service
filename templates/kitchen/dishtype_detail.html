@@ -10,5 +10,6 @@
     <li>{{ dish.name }} - ${{ dish.price }}</li>
   {% endfor %}
 </ul>
+<a class="btn btn-primary" href="{% url 'kitchen:dish-type-update' dishtype.id %}">Update</a>
 <a class="btn btn-danger" href="{% url 'kitchen:dish-type-delete' dishtype.id %}">Delete</a>
 {% endblock %}
