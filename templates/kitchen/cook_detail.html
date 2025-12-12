@@ -5,4 +5,6 @@
 {% block content %}
 <h1>Cook Detail View</h1>
 <p>Cook: {{ cook.username }}</p>
+<a class="btn btn-primary" href="{% url 'kitchen:cook-update' cook.id %}">Update</a>
+<a class="btn btn-danger" href="{% url 'kitchen:cook-delete' cook.id %}">Delete</a>
 {% endblock %}
