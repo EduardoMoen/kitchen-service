@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
+
+from .forms import CookCreateForm
 from .models import Cook, Dish, DishType
 
 def index(request):
@@ -81,13 +83,13 @@ class CookDetailView(generic.DetailView):
 
 class CookCreateView(generic.CreateView):
     model = Cook
-    fields = "__all__"
+    form_class = CookCreateForm
     success_url = reverse_lazy("kitchen:cook-list")
 
 
 class CookUpdateView(generic.UpdateView):
     model = Cook
-    fields = "__all__"
+    form_class = CookCreateForm
     success_url = reverse_lazy("kitchen:cook-list")
 
 
