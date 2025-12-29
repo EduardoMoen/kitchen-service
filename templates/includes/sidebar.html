@@ -1,4 +1,17 @@
 <ul class="list-group">
+  {% if user.is_authenticated %}
+    <li class="list-group-item d-flex align-items-center justify-content-between">
+      <span>{{ user.username }}</span>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-outline-danger" type="submit">Logout</button>
+      </form>
+    </li>
+  {% else %}
+    <li class="list-group-item">
+      <a href="{% url 'login' %}">Login</a>
+    </li>
+  {% endif %}
   <li class="list-group-item">
     <a href="{% url 'kitchen:index' %}">Home</a>
   </li>
