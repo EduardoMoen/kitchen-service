@@ -4,7 +4,10 @@
 
 {% block content %}
   <h1>Dish Types List View <a class="btn btn-success" href="{% url 'kitchen:dish-type-create' %}">Create</a></h1>
-
+  <form class="d-flex" method="get">
+    {{ search_form }}
+    <input class="btn btn-secondary" type="submit" value="Search">
+  </form>
   {% if dishtype_list %}
     <table class="table">
       <thead>
