@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import CookCreateForm, DishTypesSearchForm, DishSearchForm
+from .forms import CookCreateForm, DishTypesSearchForm, DishSearchForm, CookSearchForm
 from .models import Cook, Dish, DishType
 
 def index(request):
@@ -71,6 +71,7 @@ class DishTypeDeleteView(generic.DeleteView):
 
 class DishListView(generic.ListView):
     model = Dish
+    paginate_by = 5
 
     def get_context_data(
         self, *, object_list = ..., **kwargs
@@ -119,6 +120,30 @@ class DishDeleteView(generic.DeleteView):
 
 class CookListView(generic.ListView):
     model = Cook
+    paginate_by = 5
+
+    def get_context_data(
+        self, *, object_list = ..., **kwargs
+    ):
+        context = super(CookListView, self).get_context_data(**kwargs)
+
+        username = self.request.GET.get("username", "")
+
+        context["search_form"] = CookSearchForm(
+            initial={"username": username}
+        )
+
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        username = self.request.GET.get("username")
+
+        if username:
+            queryset = queryset.filter(username__icontains=username)
+
+        return queryset
+
 
 
 class CookDetailView(generic.DetailView):
