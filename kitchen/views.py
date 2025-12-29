@@ -22,6 +22,7 @@ def index(request):
 
 class DishTypeListView(generic.ListView):
     model = DishType
+    paginate_by = 5
 
 
 class DishTypeDetailView(generic.DetailView):
