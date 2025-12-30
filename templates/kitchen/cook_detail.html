@@ -8,6 +8,10 @@
 {% if cook.years_of_experience %}
   <p>Years od experience: {{ cook.years_of_experience }}</p>
 {% endif %}
+<h3>Dishes</h3>
+{% for dish in cook.dishes.all %}
+<p>{{ dish }} - ${{ dish.price }}</p>
+{% endfor %}
 <a class="mt-4 btn btn-primary" href="{% url 'kitchen:cook-update' cook.id %}">Update</a>
 <a class="mt-4 btn btn-danger" href="{% url 'kitchen:cook-delete' cook.id %}">Delete</a>
 {% endblock %}
