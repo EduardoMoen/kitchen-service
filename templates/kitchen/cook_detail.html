@@ -3,15 +3,53 @@
 {% block title %}Cook{% endblock %}
 
 {% block content %}
-<h1>Cook Detail View</h1>
-<p class="mt-4">Cook: {{ cook.username }}</p>
-{% if cook.years_of_experience %}
-  <p>Years od experience: {{ cook.years_of_experience }}</p>
-{% endif %}
-<h3>Dishes</h3>
-{% for dish in cook.dishes.all %}
-<p>{{ dish }} - ${{ dish.price }}</p>
-{% endfor %}
-<a class="mt-4 btn btn-primary" href="{% url 'kitchen:cook-update' cook.id %}">Update</a>
-<a class="mt-4 btn btn-danger" href="{% url 'kitchen:cook-delete' cook.id %}">Delete</a>
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h1 class="card-title mb-3">{{ cook.username }}</h1>
+
+      {% if cook.years_of_experience %}
+        <p class="text-muted">
+          <strong>Years of experience:</strong> {{ cook.years_of_experience }}
+        </p>
+      {% else %}
+        <p class="text-muted fst-italic">
+          Experience not informed
+        </p>
+      {% endif %}
+
+      <hr>
+
+      <h4 class="mb-3">Dishes</h4>
+
+      {% if cook.dishes.all %}
+        <ul class="list-group mb-4">
+          {% for dish in cook.dishes.all %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ dish.name }}
+              <span class="badge bg-primary rounded-pill">
+                ${{ dish.price }}
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted fst-italic">
+          This cook is not assigned to any dishes yet.
+        </p>
+      {% endif %}
+
+      <div class="d-flex gap-2">
+        <a class="btn btn-primary" href="{% url 'kitchen:cook-update' cook.id %}">
+          Update
+        </a>
+        <a class="btn btn-danger" href="{% url 'kitchen:cook-delete' cook.id %}">
+          Delete
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
 {% endblock %}

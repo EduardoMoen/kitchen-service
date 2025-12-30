@@ -1,9 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Index Page</h1>
-<p>Total Cooks: {{ num_cooks }}</p>
-<p>Total Dishes: {{ num_dishes }}</p>
-<p>Total Dish Types: {{ num_dish_types }}</p>
-<p>You have visited this page {{ num_visits }} times</p>
+<div class="container mt-4">
+
+  <h1 class="mb-4">Home Page</h1>
+
+  <div class="row g-4">
+
+    <div class="col-md-3">
+      <div class="card shadow-sm text-center">
+        <div class="card-body">
+          <h6 class="text-muted">Cooks</h6>
+          <h2 class="fw-bold">{{ num_cooks }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm text-center">
+        <div class="card-body">
+          <h6 class="text-muted">Dishes</h6>
+          <h2 class="fw-bold">{{ num_dishes }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm text-center">
+        <div class="card-body">
+          <h6 class="text-muted">Dish Types</h6>
+          <h2 class="fw-bold">{{ num_dish_types }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm text-center bg-light">
+        <div class="card-body">
+          <h6 class="text-muted">Visits</h6>
+          <h2 class="fw-bold">{{ num_visits }}</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 {% endblock %}
