@@ -1,12 +1,15 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block title %}Dish Type{% endblock %}
 
 {% block content %}
-<h1>{{ object|yesno:"Update, Create" }} Dish Type</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input class="btn btn-primary" type="submit" value="Submit">
-</form>
+<div class="col-4">
+  <h1>{{ object|yesno:"Update, Create" }} Dish Type</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="mt-3 btn btn-primary" type="submit" value="Submit">
+  </form>
+</div>
 {% endblock %}
