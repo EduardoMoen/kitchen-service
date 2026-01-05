@@ -1,16 +1,53 @@
 {% extends "base.html" %}
 
-{% block title %}Dish{% endblock %}
+{% block title %}{{ dish.name }}{% endblock %}
 
 {% block content %}
-<h1>{{ dish.name }}</h1>
-<p>Description: {{ dish.description }}</p>
-<p>Price: ${{ dish.price }}</p>
-<p>Dish Type: {{ dish.dish_type.name }}</p>
-<h3>Cooks</h3>
-{% for cook in dish.cooks.all %}
-  <p>{{ cook.username }}</p>
-{% endfor %}
-<a class="btn btn-primary" href="{% url 'kitchen:dish-update' dish.id %}">Update</a>
-<a class="btn btn-danger" href="{% url 'kitchen:dish-delete' dish.id %}">Delete</a>
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h2 class="card-title mb-3">{{ dish.name }}</h2>
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="badge bg-secondary">
+          {{ dish.dish_type.name }}
+        </span>
+        <span class="fs-5 fw-bold text-success">
+          $ {{ dish.price }}
+        </span>
+      </div>
+
+      <p class="card-text text-muted">
+        {{ dish.description }}
+      </p>
+
+      <hr>
+
+      <h5 class="mb-2">Cooks responsáveis</h5>
+      {% if dish.cooks.all %}
+        <ul class="list-group list-group-flush mb-3">
+          {% for cook in dish.cooks.all %}
+            <li class="list-group-item">
+              {{ cook.username }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">Nenhum cook associado.</p>
+      {% endif %}
+
+      <div class="d-flex gap-2">
+        <a class="btn btn-outline-primary" href="{% url 'kitchen:dish-update' dish.id %}">
+          Update
+        </a>
+        <a class="btn btn-outline-danger" href="{% url 'kitchen:dish-delete' dish.id %}">
+          Delete
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
 {% endblock %}
+

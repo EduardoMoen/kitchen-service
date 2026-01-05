@@ -1,0 +1,55 @@
+<div class="card shadow-sm">
+  <div class="card-body p-0">
+
+    {% if user.is_authenticated %}
+      <div class="p-3 border-bottom d-flex align-items-center justify-content-between">
+        <div>
+          <strong>👤 {{ user.username }}</strong>
+        </div>
+        <form action="{% url 'logout' %}" method="post" class="mb-0">
+          {% csrf_token %}
+          <button class="btn btn-sm btn-outline-danger" type="submit">
+            Logout
+          </button>
+        </form>
+      </div>
+    {% else %}
+      <div class="p-3 border-bottom text-center">
+        <a class="btn btn-outline-primary w-100" href="{% url 'login' %}">
+          Login
+        </a>
+      </div>
+    {% endif %}
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <a class="text-decoration-none d-flex align-items-center gap-2"
+           href="{% url 'kitchen:index' %}">
+          🏠 <span>Home</span>
+        </a>
+      </li>
+
+      <li class="list-group-item">
+        <a class="text-decoration-none d-flex align-items-center gap-2"
+           href="{% url 'kitchen:dish-list' %}">
+          🍽️ <span>Dishes</span>
+        </a>
+      </li>
+
+      <li class="list-group-item">
+        <a class="text-decoration-none d-flex align-items-center gap-2"
+           href="{% url 'kitchen:dish-type-list' %}">
+          🍲 <span>Dish Types</span>
+        </a>
+      </li>
+
+      <li class="list-group-item">
+        <a class="text-decoration-none d-flex align-items-center gap-2"
+           href="{% url 'kitchen:cook-list' %}">
+          👨‍🍳 <span>Cooks</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</div>
